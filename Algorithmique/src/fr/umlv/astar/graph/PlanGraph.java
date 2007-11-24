@@ -26,6 +26,7 @@ public class PlanGraph implements Graph<PlanVertex> {
 	 * 
 	 */
 	public PlanGraph() {
+
 		this.graph = new HashMap<PlanVertex, HashMap<PlanVertex, Double>>();
 	}
 
@@ -33,9 +34,10 @@ public class PlanGraph implements Graph<PlanVertex> {
 	 * Add a plan vertex to the plan graph.
 	 * 
 	 * @param vertex
-	 *            the vertex to add.
+	 *          the vertex to add.
 	 */
 	public void addPlanVertex(PlanVertex vertex) {
+
 		if (!this.graph.containsKey(vertex)) {
 			this.graph.put(vertex, new HashMap<PlanVertex, Double>());
 		}
@@ -43,15 +45,15 @@ public class PlanGraph implements Graph<PlanVertex> {
 
 	/**
 	 * Creates an edge between start and end vertex associated to the weight. If
-	 * this weight is less than the euclidean distance between the two vertices
-	 * in the plan, the edge is not created.
+	 * this weight is less than the euclidean distance between the two vertices in
+	 * the plan, the edge is not created.
 	 * 
 	 * @param start
-	 *            source of the edge.
+	 *          source of the edge.
 	 * @param end
-	 *            destination of the edge.
+	 *          destination of the edge.
 	 * @param weight
-	 *            weight of the edge.
+	 *          weight of the edge.
 	 */
 	public void addEdge(PlanVertex start, PlanVertex end, double weight) {
 
@@ -59,9 +61,8 @@ public class PlanGraph implements Graph<PlanVertex> {
 		if (this.graph.containsKey(start) && this.graph.containsKey(end)) {
 			// tests if the weight is higher than the euclidean distance between
 			// the two vertices
-			if (weight > Distances.euclideanDistance(start.getXCoordinate(),
-					start.getYCoordinate(), end.getXCoordinate(), end
-							.getYCoordinate())) {
+			if (weight > Distances.euclideanDistance(start.getXCoordinate(), start
+					.getYCoordinate(), end.getXCoordinate(), end.getYCoordinate())) {
 				// add the successor with the specified weight
 				this.graph.get(start).put(end, weight);
 			}
@@ -73,12 +74,13 @@ public class PlanGraph implements Graph<PlanVertex> {
 	 * Returns if an edge exists between start and end.
 	 * 
 	 * @param start
-	 *            start of the edge.
+	 *          start of the edge.
 	 * @param end
-	 *            end of the edge.
+	 *          end of the edge.
 	 * @return if an edge exists between start end end.
 	 */
 	public boolean isEdge(PlanVertex start, PlanVertex end) {
+
 		if (this.graph.containsKey(start)) {
 			if (this.graph.get(start).containsKey(end)) {
 				return true;
@@ -88,17 +90,18 @@ public class PlanGraph implements Graph<PlanVertex> {
 	}
 
 	/**
-	 * Returns the weigth of the edge connecting start and end, or 0 if this
-	 * edge does not exists.
+	 * Returns the weigth of the edge connecting start and end, or 0 if this edge
+	 * does not exists.
 	 * 
 	 * @param start
-	 *            start of the edge.
+	 *          start of the edge.
 	 * @param end
-	 *            end of the edge.
+	 *          end of the edge.
 	 * @return the weight of the edge connecting the two vertices, or 0 if the
 	 *         edge does not exists.
 	 */
 	public double edgeValue(PlanVertex start, PlanVertex end) {
+
 		if (this.graph.containsKey(start)) {
 			return this.graph.get(start).get(end);
 		}
@@ -110,11 +113,12 @@ public class PlanGraph implements Graph<PlanVertex> {
 	 * not exists.
 	 * 
 	 * @param vertex
-	 *            the vertex.
+	 *          the vertex.
 	 * @return the number of successors of the vertex, or -1 if the vertex does
 	 *         not exists.
 	 */
 	public int numberOfSuccessors(PlanVertex vertex) {
+
 		if (this.graph.containsKey(vertex)) {
 			return this.graph.get(vertex).size();
 		}
@@ -126,50 +130,52 @@ public class PlanGraph implements Graph<PlanVertex> {
 	 * more successor.
 	 * 
 	 * @param vertex
-	 *            the vertex.
+	 *          the vertex.
 	 * @param n
-	 *            the position.
+	 *          the position.
 	 * @return the successor in position n of the vertex, or null if there is no
 	 *         more successor.
 	 */
 	public PlanVertex getSuccessor(PlanVertex vertex, int n) {
+
 		if (!this.graph.containsKey(vertex)) {
 			return null;
 		}
 		// create a set of entry of the map
-		Set<Entry<PlanVertex, Double>> entries = this.graph.get(vertex)
-				.entrySet();
+		Set<Entry<PlanVertex, Double>> entries = this.graph.get(vertex).entrySet();
 
 		// traverse the set until nth element
 		PlanVertex result = null;
 		int i = 0;
-		for(Entry<PlanVertex, Double> entry : entries){
-			if(i == n){
+		for (Entry<PlanVertex, Double> entry : entries) {
+			if (i == n) {
 				result = entry.getKey();
 			}
 			i++;
 		}
-		
+
 		return result;
 	}
-	
+
 	@Override
 	public String toString() {
-	
-		
-		StringBuilder sb =new StringBuilder();
-		Set<Entry<PlanVertex, HashMap<PlanVertex, Double>>> entries = this.graph.entrySet();
-		
+
+		StringBuilder sb = new StringBuilder();
+		Set<Entry<PlanVertex, HashMap<PlanVertex, Double>>> entries = this.graph
+				.entrySet();
+
 		PlanVertex result = null;
 		for (Entry<PlanVertex, HashMap<PlanVertex, Double>> entry : entries) {
 			result = entry.getKey();
 			sb.append("Node : " + result + "\n");
 			sb.append("Successors : \n");
-			
-			Set<Entry<PlanVertex, Double>> entriesSuccessors = this.graph.get(result)
-			.entrySet();
-			for(Entry<PlanVertex, Double> entrySuccessors : entriesSuccessors){
-				sb.append(entrySuccessors.getKey() + " weight = " + entrySuccessors.getValue() + "\n");
+
+			Set<Entry<PlanVertex, Double>> entriesSuccessors = this.graph
+					.get(result)
+					.entrySet();
+			for (Entry<PlanVertex, Double> entrySuccessors : entriesSuccessors) {
+				sb.append(entrySuccessors.getKey() + " weight = "
+						+ entrySuccessors.getValue() + "\n");
 			}
 		}
 		return sb.toString();
