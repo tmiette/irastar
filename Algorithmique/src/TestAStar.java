@@ -1,5 +1,5 @@
 import fr.umlv.astar.AStar;
-import fr.umlv.astar.AStarPath;
+import fr.umlv.astar.AStarResult;
 import fr.umlv.astar.graph.CheckerboardGraph;
 import fr.umlv.astar.graph.CheckerboardVertex;
 import fr.umlv.astar.graph.PlanGraph;
@@ -23,7 +23,7 @@ public class TestAStar {
 		CheckerboardVertex start = graph.getCheckerboardVertex(0, 0);
 		CheckerboardVertex end = graph.getCheckerboardVertex(2, 2);
 
-		AStarPath<CheckerboardVertex> path = AStar.aStarAlgorithm(graph,
+		AStarResult<CheckerboardVertex> path = AStar.aStarAlgorithm(graph,
 				heuristic, start, end);
 		if (path == null) {
 			System.out.println("Cannot reach end vertex.");
@@ -61,7 +61,7 @@ public class TestAStar {
 		PlanVertex start2 = pv1;
 		PlanVertex end2 = pv7;
 
-		AStarPath<PlanVertex> path2 = AStar.aStarAlgorithm(graph2, heuristic2,
+		AStarResult<PlanVertex> path2 = AStar.aStarAlgorithm(graph2, heuristic2,
 				start2, end2);
 		if (path2 == null) {
 			System.out.println("Cannot reach end vertex.");

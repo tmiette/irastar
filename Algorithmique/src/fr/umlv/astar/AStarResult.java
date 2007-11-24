@@ -16,4 +16,11 @@ public interface AStarResult<V> {
 	 * @return a list of successive vertices in the path.
 	 */
 	public List<V> getPath();
+
+	/**
+	 * Returns the length of the path.
+	 * 
+	 * @return the length of the path.
+	 */
+	public int length();
 }

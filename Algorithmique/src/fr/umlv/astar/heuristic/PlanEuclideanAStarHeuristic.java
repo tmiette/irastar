@@ -1,6 +1,5 @@
 package fr.umlv.astar.heuristic;
 
-import fr.umlv.astar.graph.Graph;
 import fr.umlv.astar.graph.PlanVertex;
 import fr.umlv.astar.util.Distances;
 
@@ -25,8 +24,7 @@ public class PlanEuclideanAStarHeuristic implements AStarHeuristic<PlanVertex> {
 	 *            the vertex to reach.
 	 * @return the hauristic value.
 	 */
-	public double heuristicValue(Graph<PlanVertex> graph, PlanVertex vertex,
-			PlanVertex end) {
+	public double heuristicValue(PlanVertex vertex, PlanVertex end) {
 
 		double x1 = vertex.getXCoordinate();
 		double y1 = vertex.getYCoordinate();
