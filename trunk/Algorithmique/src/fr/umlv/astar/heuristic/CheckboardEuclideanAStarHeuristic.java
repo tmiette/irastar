@@ -1,7 +1,6 @@
 package fr.umlv.astar.heuristic;
 
 import fr.umlv.astar.graph.CheckerboardVertex;
-import fr.umlv.astar.graph.Graph;
 import fr.umlv.astar.util.Distances;
 
 /**
@@ -26,8 +25,8 @@ public class CheckboardEuclideanAStarHeuristic implements
 	 *            the vertex to reach.
 	 * @return the hauristic value.
 	 */
-	public double heuristicValue(Graph<CheckerboardVertex> graph,
-			CheckerboardVertex vertex, CheckerboardVertex end) {
+	public double heuristicValue(CheckerboardVertex vertex,
+			CheckerboardVertex end) {
 
 		int x1 = vertex.getXCoordinate();
 		int y1 = vertex.getYCoordinate();

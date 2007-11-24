@@ -31,15 +31,15 @@ public class AStar {
 	 *            the end vertex.
 	 * @return the shortest path, or null if the end vertex is unreachable.
 	 */
-	public static <V> AStarPath<V> aStarAlgorithm(Graph<V> graph,
+	public static <V> AStarResult<V> aStarAlgorithm(Graph<V> graph,
 			AStarHeuristic<V> h, V start, V end) {
 
 		// List of all astar vertices created during the algorithm
 		ArrayList<AStarVertex<V>> vertices = new ArrayList<AStarVertex<V>>();
 
 		// Get the start vertex
-		AStarVertex<V> vStart = new AStarVertex<V>(h.heuristicValue(graph,
-				start, end), start);
+		AStarVertex<V> vStart = new AStarVertex<V>(
+				h.heuristicValue(start, end), start);
 		// Add it in the list of astar vertices
 		vertices.add(vStart);
 
@@ -86,7 +86,7 @@ public class AStar {
 
 				if (successor == null) {
 					// else create the new astar vertex
-					successor = new AStarVertex<V>(h.heuristicValue(graph,
+					successor = new AStarVertex<V>(h.heuristicValue(
 							successorValue, end), successorValue);
 					// add it in the list of astar vertices
 					vertices.add(successor);
