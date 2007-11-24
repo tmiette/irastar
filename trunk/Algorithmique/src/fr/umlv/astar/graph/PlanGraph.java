@@ -152,5 +152,27 @@ public class PlanGraph implements Graph<PlanVertex> {
 		
 		return result;
 	}
+	
+	@Override
+	public String toString() {
+	
+		
+		StringBuilder sb =new StringBuilder();
+		Set<Entry<PlanVertex, HashMap<PlanVertex, Double>>> entries = this.graph.entrySet();
+		
+		PlanVertex result = null;
+		for (Entry<PlanVertex, HashMap<PlanVertex, Double>> entry : entries) {
+			result = entry.getKey();
+			sb.append("Node : " + result + "\n");
+			sb.append("Successors : \n");
+			
+			Set<Entry<PlanVertex, Double>> entriesSuccessors = this.graph.get(result)
+			.entrySet();
+			for(Entry<PlanVertex, Double> entrySuccessors : entriesSuccessors){
+				sb.append(entrySuccessors.getKey() + " weight = " + entrySuccessors.getValue() + "\n");
+			}
+		}
+		return sb.toString();
+	}
 
 }
