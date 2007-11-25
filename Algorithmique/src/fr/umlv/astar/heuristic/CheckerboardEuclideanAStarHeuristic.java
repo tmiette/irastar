@@ -10,7 +10,7 @@ import fr.umlv.astar.util.Distances;
  * @author Sébastien MOURET
  * @version 1.0
  */
-public class CheckboardEuclideanAStarHeuristic implements
+public class CheckerboardEuclideanAStarHeuristic implements
 		AStarHeuristic<CheckerboardVertex> {
 
 	/**

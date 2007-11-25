@@ -7,7 +7,7 @@ import fr.umlv.astar.graph.CheckerboardVertex;
 import fr.umlv.astar.graph.PlanGraph;
 import fr.umlv.astar.graph.PlanVertex;
 import fr.umlv.astar.heuristic.AStarHeuristic;
-import fr.umlv.astar.heuristic.CheckboardEuclideanAStarHeuristic;
+import fr.umlv.astar.heuristic.CheckerboardEuclideanAStarHeuristic;
 import fr.umlv.astar.heuristic.PlanEuclideanAStarHeuristic;
 
 public class TestAStar {
@@ -118,7 +118,7 @@ public class TestAStar {
 	private static void printPath(CheckerboardGraph graph,
 			CheckerboardVertex start, CheckerboardVertex end) {
 
-		AStarHeuristic<CheckerboardVertex> heuristic = new CheckboardEuclideanAStarHeuristic();
+		AStarHeuristic<CheckerboardVertex> heuristic = new CheckerboardEuclideanAStarHeuristic();
 
 		AStarResult<CheckerboardVertex> path = AStar.aStarAlgorithm(graph,
 				heuristic, start, end);
