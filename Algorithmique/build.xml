@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="astar" default="main" basedir=".">
+	<description>
+	Astar : A* pathfinding implementation in java
+	</description>
+
+	<!-- User properties -->
+	<property name="project.name" value="AStar" />
+	<property name="project.version" value="1.0" />
+	<property name="project.authors" value="MIETTE, MOURET" />
+	<property name="jar.dir" value="${basedir}/bin" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="classes.dir" value="${basedir}/classes" />
+	<property name="package" value="fr/umlv/astar" />
+
+	<path id="classpath">
+		<fileset dir="${basedir}" />
+	</path>
+
+	<!-- Directory build task -->
+	<target name="init" description="Building directories">
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${jar.dir}" />
+	</target>
+
+	<!-- Compiling task -->
+	<target name="compilation" depends="init" description="Compiling sources">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" debug="true">
+			<include name="${package}/*.java" />
+			<include name="${package}/graph/*.java" />
+			<include name="${package}/heuristic/*.java" />
+			<include name="${package}/priorityqueue/*.java" />
+			<include name="${package}/util/*.java" />
+			<include name="test/*.java" />
+		</javac>
+	</target>
+
+
+	<!-- Jar generation task -->
+	<target name="main" description="Generating Jar file" depends="compilation">
+		<jar destfile="${jar.dir}/${project.name}.jar">
+			<!-- Jar files in classes directory and lib directory, however we exclude 
+				 the jar files contained in lib directory
+			-->
+			<fileset dir="${classes.dir}" />
+			<!-- Manifest is used for the JVM to locate main class -->
+			<manifest>
+				<attribute name="Main-Class" value="test/TestAStar" />
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- Run program task -->
+	<target name="run" depends="main" description="Running ${project.name}">
+		<java jar="${jar.dir}/${project.name}.jar" fork="true">
+		</java>
+	</target>
+
+	<!-- Clean task, we remove all files in classes directory -->
+	<target name="clean" description="Desctruction des fichiers classes">
+		<delete dir="${classes.dir}" />
+		<delete dir="${jar.dir}" />
+	</target>
+
+	<!-- Javadoc task -->
+	<target name="javadoc" description="Genere la Javadoc">
+		<javadoc>
+		</javadoc>
+	</target>
+
+</project>
+
