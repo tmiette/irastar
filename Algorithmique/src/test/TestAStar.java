@@ -10,6 +10,13 @@ import fr.umlv.astar.heuristic.AStarHeuristic;
 import fr.umlv.astar.heuristic.CheckerboardEuclideanAStarHeuristic;
 import fr.umlv.astar.heuristic.PlanEuclideanAStarHeuristic;
 
+/**
+ * Main class which perform some tests with astar algorithm.
+ * 
+ * @author Tom MIETTE
+ * @author Sebastien MOURET
+ * @version 1.0
+ */
 public class TestAStar {
 
 	public static void main(String[] args) {
@@ -22,7 +29,7 @@ public class TestAStar {
 		double[][] matrix3 = { { 8, 5, 1, 8 }, { 0, 0, 0, 1 }, { 0, 2, 0, 9 },
 				{ 0, 0, 0, 3 }, { 7, 8, 4, 5 } };
 
-		//displaying the three matrix representation
+		// displaying the three matrix representation
 		System.out.println("Astar test:");
 		System.out.println("Matrix version:");
 		System.out.println();
@@ -36,7 +43,7 @@ public class TestAStar {
 		printMatrix(matrix3);
 		System.out.println();
 
-		//displaying the path found by astart between 2 vertex
+		// displaying the path found by astart between 2 vertex
 		System.out.println("Start node = (0, 0) | End node = (0, 3)");
 		CheckerboardGraph graph = new CheckerboardGraph(matrix);
 		printPath(graph, graph.getCheckerboardVertex(0, 0), graph
@@ -56,15 +63,15 @@ public class TestAStar {
 		System.out.println();
 		System.out.println("Plan version :");
 		PlanGraph graph2 = new PlanGraph();
-		
-		//building graph
+
+		// building graph
 		PlanVertex[] vertice = buildPlanGraph(graph2);
 		System.out.println(graph2);
 
 		PlanVertex start2 = vertice[0];
 		PlanVertex end2 = vertice[1];
-		
-		//displaying the path found by astart between 2 vertex
+
+		// displaying the path found by astart between 2 vertex
 		printPath(graph2, start2, end2);
 
 	}
@@ -73,24 +80,23 @@ public class TestAStar {
 	 * Display the path between vertex start2 and end2 for a graph plan
 	 * 
 	 * @param graph2
-	 *          graph
+	 *            graph
 	 * @param start2
-	 *          starting vertex
+	 *            starting vertex
 	 * @param end2
-	 *          ending vertex
+	 *            ending vertex
 	 */
 	private static void printPath(PlanGraph graph2, PlanVertex start2,
 			PlanVertex end2) {
 
 		AStarHeuristic<PlanVertex> heuristic2 = new PlanEuclideanAStarHeuristic();
 
-		AStarResult<PlanVertex> path2 = AStar.aStarAlgorithm(graph2, heuristic2,
-				start2, end2);
+		AStarResult<PlanVertex> path2 = AStar.aStarAlgorithm(graph2,
+				heuristic2, start2, end2);
 		System.out.println("Result :");
 		if (path2 == null) {
 			System.out.println("Cannot reach end vertex.");
-		}
-		else {
+		} else {
 			System.out.println("Cost : " + path2.getPathWeight());
 			int i = 0;
 			for (PlanVertex pv : path2.getPath()) {
@@ -142,11 +148,11 @@ public class TestAStar {
 	 * representation
 	 * 
 	 * @param graph
-	 *          matrix
+	 *            matrix
 	 * @param start
-	 *          starting vertex
+	 *            starting vertex
 	 * @param end
-	 *          ending vertex
+	 *            ending vertex
 	 */
 	private static void printPath(CheckerboardGraph graph,
 			CheckerboardVertex start, CheckerboardVertex end) {
@@ -158,8 +164,7 @@ public class TestAStar {
 		System.out.println("Result :");
 		if (path == null) {
 			System.out.println("Cannot reach end vertex.");
-		}
-		else {
+		} else {
 			System.out.println(path.toString());
 		}
 	}
