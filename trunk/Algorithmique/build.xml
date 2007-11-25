@@ -7,7 +7,7 @@
 	<!-- User properties -->
 	<property name="project.name" value="AStar" />
 	<property name="project.version" value="1.0" />
-	<property name="project.authors" value="MIETTE, MOURET" />
+	<property name="project.authors" value="Tom MIETTE, Sebastien MOURET" />
 	<property name="jar.dir" value="${basedir}/bin" />
 	<property name="src.dir" value="${basedir}/src" />
 	<property name="classes.dir" value="${basedir}/classes" />
