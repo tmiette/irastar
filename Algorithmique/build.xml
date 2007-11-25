@@ -12,6 +12,7 @@
 	<property name="src.dir" value="${basedir}/src" />
 	<property name="classes.dir" value="${basedir}/classes" />
 	<property name="package" value="fr/umlv/astar" />
+	<property name="doc" location="doc/api"/>
 
 	<path id="classpath">
 		<fileset dir="${basedir}" />
@@ -64,7 +65,9 @@
 
 	<!-- Javadoc task -->
 	<target name="javadoc" description="Generating Javadoc">
-		<javadoc>
+		<delete dir="${doc}"/>
+		<mkdir dir="${doc}"/>
+		<javadoc destdir="${doc}" sourcepath="${src.dir}">
 		</javadoc>
 	</target>
 
