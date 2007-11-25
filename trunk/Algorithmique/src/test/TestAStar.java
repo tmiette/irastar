@@ -22,6 +22,7 @@ public class TestAStar {
 		double[][] matrix3 = { { 8, 5, 1, 8 }, { 0, 0, 0, 1 }, { 0, 2, 0, 9 },
 				{ 0, 0, 0, 3 }, { 7, 8, 4, 5 } };
 
+		//displaying the three matrix representation
 		System.out.println("Astar test:");
 		System.out.println("Matrix version:");
 		System.out.println();
@@ -35,6 +36,7 @@ public class TestAStar {
 		printMatrix(matrix3);
 		System.out.println();
 
+		//displaying the path found by astart between 2 vertex
 		System.out.println("Start node = (0, 0) | End node = (0, 3)");
 		CheckerboardGraph graph = new CheckerboardGraph(matrix);
 		printPath(graph, graph.getCheckerboardVertex(0, 0), graph
@@ -50,15 +52,19 @@ public class TestAStar {
 		printPath(graph, graph.getCheckerboardVertex(2, 1), graph
 				.getCheckerboardVertex(0, 2));
 
-		// plan graph
+		// plan graph implementation
 		System.out.println();
 		System.out.println("Plan version :");
 		PlanGraph graph2 = new PlanGraph();
+		
+		//building graph
 		PlanVertex[] vertice = buildPlanGraph(graph2);
 		System.out.println(graph2);
 
 		PlanVertex start2 = vertice[0];
 		PlanVertex end2 = vertice[1];
+		
+		//displaying the path found by astart between 2 vertex
 		printPath(graph2, start2, end2);
 
 	}
