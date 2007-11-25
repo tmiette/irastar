@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="astar" default="main" basedir=".">
+<project name="astar" default="jar" basedir=".">
 	<description>
 	Astar : A* pathfinding implementation in java
 	</description>
@@ -24,7 +24,7 @@
 	</target>
 
 	<!-- Compiling task -->
-	<target name="compilation" depends="init" description="Compiling sources">
+	<target name="compile" depends="init" description="Compiling sources">
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" debug="true">
 			<include name="${package}/*.java" />
 			<include name="${package}/graph/*.java" />
@@ -37,7 +37,7 @@
 
 
 	<!-- Jar generation task -->
-	<target name="main" description="Generating Jar file" depends="compilation">
+	<target name="jar" description="Generating Jar file" depends="compile">
 		<jar destfile="${jar.dir}/${project.name}.jar">
 			<!-- Jar files in classes directory and lib directory, however we exclude 
 				 the jar files contained in lib directory
@@ -51,19 +51,19 @@
 	</target>
 
 	<!-- Run program task -->
-	<target name="run" depends="main" description="Running ${project.name}">
+	<target name="run" depends="jar" description="Running ${project.name}">
 		<java jar="${jar.dir}/${project.name}.jar" fork="true">
 		</java>
 	</target>
 
 	<!-- Clean task, we remove all files in classes directory -->
-	<target name="clean" description="Desctruction des fichiers classes">
+	<target name="clean" description="Cleaning files">
 		<delete dir="${classes.dir}" />
 		<delete dir="${jar.dir}" />
 	</target>
 
 	<!-- Javadoc task -->
-	<target name="javadoc" description="Genere la Javadoc">
+	<target name="javadoc" description="Generating Javadoc">
 		<javadoc>
 		</javadoc>
 	</target>
