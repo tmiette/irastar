@@ -14,7 +14,7 @@ public class TestAStar {
 
 	public static void main(String[] args) {
 
-		// checkboard graph
+		// matrix initialization
 		double[][] matrix = { { 6.0, 1.0, 1.0, 1.0 }, { 8.0, 4.0, 8.0, 6.0 },
 				{ 0.0, 0.0, 0.0, 7.0 }, { 5.0, 7.0, 6.0, 6.0 } };
 		double[][] matrix2 = { { 2.0, 1.0, 1.0 }, { 1.0, 0.0, 1.0 },
@@ -63,6 +63,16 @@ public class TestAStar {
 
 	}
 
+	/**
+	 * Display the path between vertex start2 and end2 for a graph plan
+	 * 
+	 * @param graph2
+	 *          graph
+	 * @param start2
+	 *          starting vertex
+	 * @param end2
+	 *          ending vertex
+	 */
 	private static void printPath(PlanGraph graph2, PlanVertex start2,
 			PlanVertex end2) {
 
@@ -84,6 +94,12 @@ public class TestAStar {
 
 	}
 
+	/**
+	 * Builds the plangraph and returns starting and ending vertice
+	 * 
+	 * @param graph2
+	 * @return PlanVertex[] array containing two vertice (start & end)
+	 */
 	private static PlanVertex[] buildPlanGraph(PlanGraph graph2) {
 
 		PlanVertex pv1 = new PlanVertex(0.0, 0.0);
@@ -115,6 +131,17 @@ public class TestAStar {
 		return vertice;
 	}
 
+	/**
+	 * Display the path between vertex start2 and end2 for a matrix graph
+	 * representation
+	 * 
+	 * @param graph
+	 *          matrix
+	 * @param start
+	 *          starting vertex
+	 * @param end
+	 *          ending vertex
+	 */
 	private static void printPath(CheckerboardGraph graph,
 			CheckerboardVertex start, CheckerboardVertex end) {
 
@@ -131,6 +158,11 @@ public class TestAStar {
 		}
 	}
 
+	/**
+	 * Displays a matrix graph implementation
+	 * 
+	 * @param matrix
+	 */
 	private static void printMatrix(double[][] matrix) {
 
 		for (int line = 0; line < matrix[0].length; line++) {
