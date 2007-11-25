@@ -4,7 +4,7 @@ package fr.umlv.astar.heuristic;
  * Interface of a heuristic which can be used with astar algorithm.
  * 
  * @author Tom MIETTE
- * @author Sébastien MOURET
+ * @author Sebastien MOURET
  * @version 1.0
  */
 public interface AStarHeuristic<V> {

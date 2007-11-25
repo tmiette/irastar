@@ -7,7 +7,7 @@ import fr.umlv.astar.util.Distances;
  * Heuristic using the euclidean distance for plan graphs and vertices.
  * 
  * @author Tom MIETTE
- * @author Sébastien MOURET
+ * @author Sebastien MOURET
  * @version 1.0
  */
 public class PlanEuclideanAStarHeuristic implements AStarHeuristic<PlanVertex> {

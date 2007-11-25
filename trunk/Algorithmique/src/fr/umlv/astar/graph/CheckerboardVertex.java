@@ -4,7 +4,7 @@ package fr.umlv.astar.graph;
  * Represents a vertex containing in a checkerboard graph.
  * 
  * @author Tom MIETTE
- * @author Sébastien MOURET
+ * @author Sebastien MOURET
  * @version 1.0
  */
 public class CheckerboardVertex {

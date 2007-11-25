@@ -12,7 +12,7 @@ import fr.umlv.astar.priorityqueue.PriorityQueue;
  * Class to perform astar algorithm.
  * 
  * @author Tom MIETTE
- * @author Sébastien MOURET
+ * @author Sebastien MOURET
  * @version 1.0
  */
 public class AStar {
@@ -58,6 +58,8 @@ public class AStar {
 		while (!open.isEmpty()) {
 
 			// get the vertex with minimum cost in the open set
+			@SuppressWarnings("unchecked")
+			// open set contains just AStarVertex, cast is safe
 			AStarVertex<V> currentVertex = (AStarVertex<V>) open.extract();
 
 			// get its generic value

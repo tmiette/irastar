@@ -4,7 +4,7 @@ package fr.umlv.astar.priorityqueue;
  * Interface of the object that can be insert in priority queues.
  * 
  * @author Tom MIETTE
- * @author Sébastien MOURET
+ * @author Sebastien MOURET
  * @version 1.0
  */
 public interface PrioritizedElement {

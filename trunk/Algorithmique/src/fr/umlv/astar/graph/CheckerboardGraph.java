@@ -7,7 +7,7 @@ import java.util.HashMap;
  * Implementation of a graph representing by a checkerboard.
  * 
  * @author Tom MIETTE
- * @author Sébastien MOURET
+ * @author Sebastien MOURET
  * @version 1.0
  */
 public class CheckerboardGraph implements Graph<CheckerboardVertex> {
