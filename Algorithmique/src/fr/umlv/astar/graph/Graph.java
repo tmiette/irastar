@@ -4,7 +4,7 @@ package fr.umlv.astar.graph;
  * Interface to represent generics graphs.
  * 
  * @author Tom MIETTE
- * @author Sébastien MOURET
+ * @author Sebastien MOURET
  * @version 1.0
  */
 public interface Graph<V> {

@@ -10,7 +10,7 @@ import fr.umlv.astar.priorityqueue.PrioritizedElement;
  * removal.
  * 
  * @author Tom MIETTE
- * @author Sébastien MOURET
+ * @author Sebastien MOURET
  * @version 1.0
  */
 public class PriorityQueue {

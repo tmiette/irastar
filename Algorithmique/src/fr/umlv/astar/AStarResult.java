@@ -2,6 +2,13 @@ package fr.umlv.astar;
 
 import java.util.List;
 
+/**
+ * Interface of a the result object of astar algorithm.
+ * 
+ * @author Tom MIETTE
+ * @author Sebastien MOURET
+ * @version 1.0
+ */
 public interface AStarResult<V> {
 	/**
 	 * Returns the cost of the path.

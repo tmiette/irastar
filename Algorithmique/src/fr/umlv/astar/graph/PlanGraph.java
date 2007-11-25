@@ -10,7 +10,7 @@ import fr.umlv.astar.util.Distances;
  * Implementation of a graph in a two dimensions plan.
  * 
  * @author Tom MIETTE
- * @author Sébastien MOURET
+ * @author Sebastien MOURET
  * @version 1.0
  */
 public class PlanGraph implements Graph<PlanVertex> {

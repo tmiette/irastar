@@ -4,7 +4,7 @@ package fr.umlv.astar.util;
  * Class with only static methods to calculate some mathematic distances.
  * 
  * @author Tom MIETTE
- * @author Sébastien MOURET
+ * @author Sebastien MOURET
  * @version 1.0
  */
 public class Distances {

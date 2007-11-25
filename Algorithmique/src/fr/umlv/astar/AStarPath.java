@@ -13,7 +13,7 @@ import fr.umlv.astar.AStar.AStarVertex;
  * element.
  * 
  * @author Tom MIETTE
- * @author Sébastien MOURET
+ * @author Sebastien MOURET
  * @version 1.0
  */
 public class AStarPath<V> implements AStarResult<V> {
