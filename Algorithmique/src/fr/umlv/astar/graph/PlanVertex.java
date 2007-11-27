@@ -22,9 +22,9 @@ public class PlanVertex {
 	/**
 	 * Constructor of a plan vertex.
 	 * 
-	 * @param x
+	 * @param xCoordinate
 	 *            the x coordinate.
-	 * @param y
+	 * @param yCoordinate
 	 *            the y coordinate.
 	 */
 	public PlanVertex(final double xCoordinate, final double yCoordinate) {
