@@ -19,61 +19,123 @@ import fr.umlv.astar.heuristic.PlanEuclideanAStarHeuristic;
  */
 public class TestAStar {
 
+	/**
+	 * Main method which lauch a sample of tests of a star algorithm.
+	 * 
+	 * @param args
+	 *            line command parameters (useless).
+	 */
 	public static void main(String[] args) {
 
-		// matrix initialization
-		double[][] matrix = { { 6.0, 1.0, 1.0, 1.0 }, { 8.0, 4.0, 8.0, 6.0 },
-				{ 0.0, 0.0, 0.0, 7.0 }, { 5.0, 7.0, 6.0, 6.0 } };
-		double[][] matrix2 = { { 2.0, 1.0, 1.0 }, { 1.0, 0.0, 1.0 },
-				{ 1.0, 2.0, 2.0 } };
-		double[][] matrix3 = { { 8, 5, 1, 8 }, { 0, 0, 0, 1 }, { 0, 2, 0, 9 },
-				{ 0, 0, 0, 3 }, { 7, 8, 4, 5 } };
+		// Samples of astar algorithm
+		System.out.println("A* TESTS : ");
 
-		// displaying the three matrix representation
-		System.out.println("Astar test:");
-		System.out.println("Matrix version:");
-		System.out.println();
-		System.out.println("Matrix number 1:");
-		printMatrix(matrix);
-		System.out.println();
-		System.out.println("Matrix number 2:");
-		printMatrix(matrix2);
-		System.out.println();
-		System.out.println("Matrix number 3:");
-		printMatrix(matrix3);
-		System.out.println();
+		// Tests with CheckerbordGraph implementation
+		System.out.println("\n----------------------");
+		System.out.println("FIRST PART - Checkerbord graphs : ");
 
-		// displaying the path found by astart between 2 vertex
-		System.out.println("Start node = (0, 0) | End node = (0, 3)");
+		// first checkerboard graph
+		double[][] matrix = { { 6.0, 4.0, 7.0, 8.0 }, { 8.0, 6.0, 4.0, 4.0 },
+				{ 5.0, 4.0, 8.0, 5.0 }, { 6.0, 7.0, 8.0, 6.0 } };
 		CheckerboardGraph graph = new CheckerboardGraph(matrix);
-		printPath(graph, graph.getCheckerboardVertex(0, 0), graph
-				.getCheckerboardVertex(0, 3));
+		System.out.println("\nCheckerboard graph 1 :\n" + graph);
 
-		System.out.println("Start node = (0, 0) | End node = (0, 2)");
-		graph = new CheckerboardGraph(matrix2);
-		printPath(graph, graph.getCheckerboardVertex(0, 0), graph
-				.getCheckerboardVertex(0, 2));
+		// first sample : path between vertices (0, 0) and (3, 3)
+		System.out.println("Sample 1");
+		performAndDisplayWithCheckerboard(graph, graph.getCheckerboardVertex(0,
+				0), graph.getCheckerboardVertex(3, 3));
+		// second sample : path between vertices (3, 1) and (0, 2)
+		System.out.println("Sample 2");
+		performAndDisplayWithCheckerboard(graph, graph.getCheckerboardVertex(3,
+				1), graph.getCheckerboardVertex(0, 2));
 
-		System.out.println("Start node = (2, 1) | End node = (0, 3)");
-		graph = new CheckerboardGraph(matrix3);
-		printPath(graph, graph.getCheckerboardVertex(2, 1), graph
-				.getCheckerboardVertex(0, 2));
+		// second checkerboard graph
+		double[][] matrix2 = { { 1.0, 4.0, 2.0, 8.0, 8.0, 0.0, 8.0 },
+				{ 8.0, 0.0, 4.0, 3.0, 4.0, 0.0, 0.0 },
+				{ 5.0, 4.0, 2.0, 3.0, 4.0, 5.0, 5.0 },
+				{ 6.0, 7.0, 8.0, 0.0, 6.0, 1.0, 6.0 },
+				{ 2.0, 3.0, 8.0, 6.0, 3.0, 0.0, 2.0 },
+				{ 0.0, 7.0, 8.0, 6.0, 0.0, 0.0, 1.0 }, };
+		CheckerboardGraph graph2 = new CheckerboardGraph(matrix2);
+		System.out.println("\nCheckerboard graph 2 :\n" + graph2);
 
-		// plan graph implementation
-		System.out.println();
-		System.out.println("Plan version :");
-		PlanGraph graph2 = new PlanGraph();
+		// first sample : path between vertices (0, 0) and (5, 6)
+		System.out.println("Sample 1");
+		performAndDisplayWithCheckerboard(graph2, graph2.getCheckerboardVertex(
+				0, 0), graph2.getCheckerboardVertex(5, 6));
+		// second sample : path between vertices (0, 0) and (0, 6)
+		System.out.println("Sample 2");
+		performAndDisplayWithCheckerboard(graph2, graph2.getCheckerboardVertex(
+				0, 0), graph2.getCheckerboardVertex(0, 6));
 
-		// building graph
-		PlanVertex[] vertice = buildPlanGraph(graph2);
-		System.out.println(graph2);
+		// Tests with PlanGraph implementation
+		System.out.println("\n----------------------");
+		System.out.println("SECOND PART - Plan graphs : ");
 
-		PlanVertex start2 = vertice[0];
-		PlanVertex end2 = vertice[1];
+		// first plan graph
+		PlanGraph graph3 = new PlanGraph();
+		PlanVertex pv1 = new PlanVertex(0.0, 0.0);
+		PlanVertex pv2 = new PlanVertex(0.2, 0.2);
+		PlanVertex pv3 = new PlanVertex(0.2, 0.4);
+		PlanVertex pv4 = new PlanVertex(0.4, 0.4);
+		PlanVertex pv5 = new PlanVertex(0.6, 0.2);
+		PlanVertex pv6 = new PlanVertex(0.4, 0.2);
+		PlanVertex pv7 = new PlanVertex(1, 1);
+		graph3.addPlanVertex(pv1);
+		graph3.addPlanVertex(pv2);
+		graph3.addPlanVertex(pv3);
+		graph3.addPlanVertex(pv4);
+		graph3.addPlanVertex(pv5);
+		graph3.addPlanVertex(pv6);
+		graph3.addPlanVertex(pv7);
+		graph3.addEdge(pv1, pv2, 2.0);
+		graph3.addEdge(pv2, pv3, 2.0);
+		graph3.addEdge(pv2, pv4, 10.0);
+		graph3.addEdge(pv2, pv5, 7.0);
+		graph3.addEdge(pv2, pv6, 3.0);
+		graph3.addEdge(pv3, pv4, 2.0);
+		graph3.addEdge(pv4, pv7, 10.0);
+		graph3.addEdge(pv5, pv7, 2.0);
+		graph3.addEdge(pv6, pv5, 3.0);
+		System.out.println("\nPlan graph 1 :\n" + graph3);
 
-		// displaying the path found by astart between 2 vertex
-		printPath(graph2, start2, end2);
+		// first sample : path between vertices (0, 0) and (3, 3)
+		System.out.println("Sample 1");
+		performAndDisplayWithPlan(graph3, pv1, pv7);
 
+	}
+
+	/**
+	 * Perform a star algorithm with the specified parameters and display the
+	 * result.
+	 * 
+	 * @param graph
+	 *            the graph.
+	 * @param start
+	 *            the start vertex.
+	 * @param end
+	 *            the end vertex.
+	 */
+	private static void performAndDisplayWithCheckerboard(
+			CheckerboardGraph graph, CheckerboardVertex start,
+			CheckerboardVertex end) {
+
+		System.out.println("----------------------");
+		System.out
+				.println("Start vertex = " + start + " | End vertex = " + end);
+		// Init heuristic
+		AStarHeuristic<CheckerboardVertex> heuristic = new CheckerboardEuclideanAStarHeuristic();
+		// Perform a star algorithm
+		AStarResult<CheckerboardVertex> path = AStar.aStarAlgorithm(graph,
+				heuristic, start, end);
+		// Display result with toString method
+		System.out.println("A* result :");
+		if (path == null) {
+			System.out.println("Cannot reach end vertex : " + end);
+		} else {
+			System.out.println(path);
+		}
+		System.out.println("----------------------");
 	}
 
 	/**
@@ -86,16 +148,21 @@ public class TestAStar {
 	 * @param end2
 	 *            ending vertex
 	 */
-	private static void printPath(PlanGraph graph2, PlanVertex start2,
-			PlanVertex end2) {
+	private static void performAndDisplayWithPlan(PlanGraph graph2,
+			PlanVertex start, PlanVertex end) {
 
-		AStarHeuristic<PlanVertex> heuristic2 = new PlanEuclideanAStarHeuristic();
-
-		AStarResult<PlanVertex> path2 = AStar.aStarAlgorithm(graph2,
-				heuristic2, start2, end2);
-		System.out.println("Result :");
+		System.out.println("----------------------");
+		System.out
+				.println("Start vertex = " + start + " | End vertex = " + end);
+		// Init heuristic
+		AStarHeuristic<PlanVertex> heuristic = new PlanEuclideanAStarHeuristic();
+		// Perform a star algorithm
+		AStarResult<PlanVertex> path2 = AStar.aStarAlgorithm(graph2, heuristic,
+				start, end);
+		// Display result with getting list
+		System.out.println("A* result :");
 		if (path2 == null) {
-			System.out.println("Cannot reach end vertex.");
+			System.out.println("Cannot reach end vertex : " + end);
 		} else {
 			System.out.println("Cost : " + path2.getPathWeight());
 			int i = 0;
@@ -103,85 +170,7 @@ public class TestAStar {
 				System.out.println(i++ + " - " + pv);
 			}
 		}
+		System.out.println("----------------------");
 
 	}
-
-	/**
-	 * Builds the plangraph and returns starting and ending vertice
-	 * 
-	 * @param graph2
-	 * @return PlanVertex[] array containing two vertice (start & end)
-	 */
-	private static PlanVertex[] buildPlanGraph(PlanGraph graph2) {
-
-		PlanVertex pv1 = new PlanVertex(0.0, 0.0);
-		PlanVertex pv2 = new PlanVertex(0.2, 0.2);
-		PlanVertex pv3 = new PlanVertex(0.2, 0.4);
-		PlanVertex pv4 = new PlanVertex(0.4, 0.4);
-		PlanVertex pv5 = new PlanVertex(0.6, 0.2);
-		PlanVertex pv6 = new PlanVertex(0.4, 0.2);
-		PlanVertex pv7 = new PlanVertex(1, 1);
-		graph2.addPlanVertex(pv1);
-		graph2.addPlanVertex(pv2);
-		graph2.addPlanVertex(pv3);
-		graph2.addPlanVertex(pv4);
-		graph2.addPlanVertex(pv5);
-		graph2.addPlanVertex(pv6);
-		graph2.addPlanVertex(pv7);
-		graph2.addEdge(pv1, pv2, 2.0);
-		graph2.addEdge(pv2, pv3, 2.0);
-		graph2.addEdge(pv2, pv4, 10.0);
-		graph2.addEdge(pv2, pv5, 7.0);
-		graph2.addEdge(pv2, pv6, 3.0);
-		graph2.addEdge(pv3, pv4, 2.0);
-		graph2.addEdge(pv4, pv7, 10.0);
-		graph2.addEdge(pv5, pv7, 2.0);
-		graph2.addEdge(pv6, pv5, 3.0);
-		PlanVertex[] vertice = new PlanVertex[2];
-		vertice[0] = pv1;
-		vertice[1] = pv7;
-		return vertice;
-	}
-
-	/**
-	 * Display the path between vertex start2 and end2 for a matrix graph
-	 * representation
-	 * 
-	 * @param graph
-	 *            matrix
-	 * @param start
-	 *            starting vertex
-	 * @param end
-	 *            ending vertex
-	 */
-	private static void printPath(CheckerboardGraph graph,
-			CheckerboardVertex start, CheckerboardVertex end) {
-
-		AStarHeuristic<CheckerboardVertex> heuristic = new CheckerboardEuclideanAStarHeuristic();
-
-		AStarResult<CheckerboardVertex> path = AStar.aStarAlgorithm(graph,
-				heuristic, start, end);
-		System.out.println("Result :");
-		if (path == null) {
-			System.out.println("Cannot reach end vertex.");
-		} else {
-			System.out.println(path.toString());
-		}
-	}
-
-	/**
-	 * Displays a matrix graph implementation
-	 * 
-	 * @param matrix
-	 */
-	private static void printMatrix(double[][] matrix) {
-
-		for (int line = 0; line < matrix[0].length; line++) {
-			for (int col = 0; col < matrix.length; col++) {
-				System.out.print(matrix[col][line] + " ");
-			}
-			System.out.println();
-		}
-	}
-
 }
