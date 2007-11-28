@@ -218,4 +218,23 @@ public class CheckerboardGraph implements Graph<CheckerboardVertex> {
 		}
 		return true;
 	}
+
+	/**
+	 * Returns a string representation of this checkerbord graph.
+	 * 
+	 * @return a string representation of this checkerbord graph.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[0].length; j++) {
+				// Print just the weight, coordinates are inherent
+				sb.append(this.matrix[i][j].getWeight());
+				sb.append(" ");
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
 }

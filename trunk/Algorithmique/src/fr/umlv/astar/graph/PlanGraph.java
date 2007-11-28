@@ -34,7 +34,7 @@ public class PlanGraph implements Graph<PlanVertex> {
 	 * Add a plan vertex to the plan graph.
 	 * 
 	 * @param vertex
-	 *          the vertex to add.
+	 *            the vertex to add.
 	 */
 	public void addPlanVertex(PlanVertex vertex) {
 
@@ -45,15 +45,15 @@ public class PlanGraph implements Graph<PlanVertex> {
 
 	/**
 	 * Creates an edge between start and end vertex associated to the weight. If
-	 * this weight is less than the euclidean distance between the two vertices in
-	 * the plan, the edge is not created.
+	 * this weight is less than the euclidean distance between the two vertices
+	 * in the plan, the edge is not created.
 	 * 
 	 * @param start
-	 *          source of the edge.
+	 *            source of the edge.
 	 * @param end
-	 *          destination of the edge.
+	 *            destination of the edge.
 	 * @param weight
-	 *          weight of the edge.
+	 *            weight of the edge.
 	 */
 	public void addEdge(PlanVertex start, PlanVertex end, double weight) {
 
@@ -61,8 +61,9 @@ public class PlanGraph implements Graph<PlanVertex> {
 		if (this.graph.containsKey(start) && this.graph.containsKey(end)) {
 			// tests if the weight is higher than the euclidean distance between
 			// the two vertices
-			if (weight > Distances.euclideanDistance(start.getXCoordinate(), start
-					.getYCoordinate(), end.getXCoordinate(), end.getYCoordinate())) {
+			if (weight > Distances.euclideanDistance(start.getXCoordinate(),
+					start.getYCoordinate(), end.getXCoordinate(), end
+							.getYCoordinate())) {
 				// add the successor with the specified weight
 				this.graph.get(start).put(end, weight);
 			}
@@ -74,9 +75,9 @@ public class PlanGraph implements Graph<PlanVertex> {
 	 * Returns if an edge exists between start and end.
 	 * 
 	 * @param start
-	 *          start of the edge.
+	 *            start of the edge.
 	 * @param end
-	 *          end of the edge.
+	 *            end of the edge.
 	 * @return if an edge exists between start end end.
 	 */
 	public boolean isEdge(PlanVertex start, PlanVertex end) {
@@ -90,13 +91,13 @@ public class PlanGraph implements Graph<PlanVertex> {
 	}
 
 	/**
-	 * Returns the weigth of the edge connecting start and end, or 0 if this edge
-	 * does not exists.
+	 * Returns the weigth of the edge connecting start and end, or 0 if this
+	 * edge does not exists.
 	 * 
 	 * @param start
-	 *          start of the edge.
+	 *            start of the edge.
 	 * @param end
-	 *          end of the edge.
+	 *            end of the edge.
 	 * @return the weight of the edge connecting the two vertices, or 0 if the
 	 *         edge does not exists.
 	 */
@@ -113,7 +114,7 @@ public class PlanGraph implements Graph<PlanVertex> {
 	 * not exists.
 	 * 
 	 * @param vertex
-	 *          the vertex.
+	 *            the vertex.
 	 * @return the number of successors of the vertex, or -1 if the vertex does
 	 *         not exists.
 	 */
@@ -130,9 +131,9 @@ public class PlanGraph implements Graph<PlanVertex> {
 	 * more successor.
 	 * 
 	 * @param vertex
-	 *          the vertex.
+	 *            the vertex.
 	 * @param n
-	 *          the position.
+	 *            the position.
 	 * @return the successor in position n of the vertex, or null if there is no
 	 *         more successor.
 	 */
@@ -142,7 +143,8 @@ public class PlanGraph implements Graph<PlanVertex> {
 			return null;
 		}
 		// create a set of entry of the map
-		Set<Entry<PlanVertex, Double>> entries = this.graph.get(vertex).entrySet();
+		Set<Entry<PlanVertex, Double>> entries = this.graph.get(vertex)
+				.entrySet();
 
 		// traverse the set until nth element
 		PlanVertex result = null;
@@ -157,6 +159,11 @@ public class PlanGraph implements Graph<PlanVertex> {
 		return result;
 	}
 
+	/**
+	 * Returns a string representation of this plan graph.
+	 * 
+	 * @return a string representation of this plan graph.
+	 */
 	@Override
 	public String toString() {
 
@@ -164,18 +171,23 @@ public class PlanGraph implements Graph<PlanVertex> {
 		Set<Entry<PlanVertex, HashMap<PlanVertex, Double>>> entries = this.graph
 				.entrySet();
 
-		PlanVertex result = null;
+		PlanVertex vertex = null;
+		// Print each vertex in the graph
 		for (Entry<PlanVertex, HashMap<PlanVertex, Double>> entry : entries) {
-			result = entry.getKey();
-			sb.append("Node : " + result + "\n");
-			sb.append("Successors : \n");
+			vertex = entry.getKey();
+			sb.append("Vertex : ");
+			sb.append(vertex);
+			sb.append("\n");
+			sb.append("List of successors : \n");
 
-			Set<Entry<PlanVertex, Double>> entriesSuccessors = this.graph
-					.get(result)
-					.entrySet();
-			for (Entry<PlanVertex, Double> entrySuccessors : entriesSuccessors) {
-				sb.append(entrySuccessors.getKey() + " weight = "
-						+ entrySuccessors.getValue() + "\n");
+			// Print the list of the successors of the current vertex
+			Set<Entry<PlanVertex, Double>> entriesSuccessors = this.graph.get(
+					vertex).entrySet();
+			for (Entry<PlanVertex, Double> successor : entriesSuccessors) {
+				sb.append(successor.getKey());
+				sb.append(" weight = ");
+				sb.append(successor.getValue());
+				sb.append("\n");
 			}
 		}
 		return sb.toString();
