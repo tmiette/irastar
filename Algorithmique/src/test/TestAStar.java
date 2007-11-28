@@ -110,11 +110,11 @@ public class TestAStar {
 	 * result.
 	 * 
 	 * @param graph
-	 *            the graph.
+	 *            the chekerboard graph.
 	 * @param start
-	 *            the start vertex.
+	 *            the start chekerboard vertex.
 	 * @param end
-	 *            the end vertex.
+	 *            the end chekerboard vertex.
 	 */
 	private static void performAndDisplayWithCheckerboard(
 			CheckerboardGraph graph, CheckerboardVertex start,
@@ -139,14 +139,15 @@ public class TestAStar {
 	}
 
 	/**
-	 * Display the path between vertex start2 and end2 for a graph plan
+	 * Perform a star algorithm with the specified parameters and display the
+	 * result.
 	 * 
-	 * @param graph2
-	 *            graph
-	 * @param start2
-	 *            starting vertex
-	 * @param end2
-	 *            ending vertex
+	 * @param graph
+	 *            the plan graph.
+	 * @param start
+	 *            the start plan vertex.
+	 * @param end
+	 *            the end plan vertex.
 	 */
 	private static void performAndDisplayWithPlan(PlanGraph graph2,
 			PlanVertex start, PlanVertex end) {
